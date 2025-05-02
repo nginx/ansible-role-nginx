@@ -22,7 +22,6 @@
           - image-filter
           - lua
           - njs
-          - opentracing
           - passenger
           - perl
           - prometheus

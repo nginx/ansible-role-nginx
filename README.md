@@ -177,6 +177,7 @@ Alpine:
   - 3.18
   - 3.19
   - 3.20
+  - 3.21
 Amazon Linux:
   - 2
   - 2023
@@ -193,8 +194,7 @@ Rocky Linux:
   - 8
   - 9
 SUSE/SLES:
-  - 12
-  - 15
+  - 15 SP6+
 Ubuntu:
   - focal (20.04)
   - jammy (22.04)
@@ -209,10 +209,10 @@ AlmaLinux:
   - 8
   - 9
 Alpine:
-  - 3.17
   - 3.18
   - 3.19
   - 3.20
+  - 3.21
 Amazon Linux:
   - 2
   - 2023
@@ -232,8 +232,7 @@ Rocky Linux:
   - 8
   - 9
 SUSE/SLES:
-  - 12
-  - 15
+  - 15 SP2+
 Ubuntu:
   - focal (20.04)
   - jammy (22.04)

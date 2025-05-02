@@ -1,9 +1,14 @@
 # Changelog
 
-## 0.25.1 (Unreleased)
+## 0.26.0 (Unreleased)
+
+BREAKING CHANGES:
+
+- Remove support for installing NGINX Plus on Alpine Linux 3.17.
 
 FEATURES:
 
+- Add support for installing NGINX Open Source and NGINX Plus on Alpine Linux 3.21.
 - Add a parameter, `nginx_distribution_package`, to override the default NGINX package name when installing NGINX from your distribution/OS repository.
 
 BUG FIXES:
@@ -14,6 +19,10 @@ BUG FIXES:
 DOCUMENTATION:
 
 - Update community docs & required workflows per the latest [NGINX template repository](https://github.com/nginx/template-repository) guidelines.
+
+TESTS:
+
+- Update SLES Molecule images from SP4 to SP6.
 
 ## 0.25.0 (Nov 28, 2024)
 
@@ -28,7 +37,7 @@ BREAKING CHANGES:
 
 DEPRECATION WARNINGS:
 
-- The NGINX Agent features contained in this role will be split into a separate role in the next minor release. If you are using this role to install and configure the NGINX Agent, please switch to the new role once it's available.
+- The NGINX Agent features contained in this role will be split into a separate role in the next major release. If you are using this role to install and configure the NGINX Agent, please switch to the new role once it's available.
 
 FEATURES:
 
