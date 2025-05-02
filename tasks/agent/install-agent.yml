@@ -24,6 +24,7 @@
   ansible.builtin.package:
     name: nginx-agent
     state: present
+  notify: (Handler) Start NGINX Agent
 
 - name: Dynamically generate NGINX Agent static configuration file
   ansible.builtin.template:
