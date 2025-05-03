@@ -17,7 +17,7 @@
           skip_verify: false
         nginx_agent_nginx:
           exclude_logs: '""'
-          socket: '"unix:/run/nginx-agent/nginx.sock"'
+          socket: '"unix:/var/run/nginx-agent/nginx.sock"'
           treat_warnings_as_errors: false
         nginx_agent_config_dirs: '"/etc/nginx:/usr/local/etc/nginx:/usr/share/nginx/modules"'
         nginx_agent_queue_size: 100
