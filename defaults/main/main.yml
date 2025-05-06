@@ -71,6 +71,9 @@ nginx_static_modules: [http_ssl_module]
 
 # (Optional) Specify NGINX package name when installing nginx from an 'os_repository'.
 # nginx_distribution_package: @nginx:1.24/common
+# (Optional) Skip checking the NGINX configuration file after installation when installing NGINX from your OS repository.
+# Not recommended unless you know what you're doing.
+# nginx_skip_os_install_config_check: false
 
 # (Optional) Choose where to fetch the NGINX signing key from.
 # Default is the official NGINX signing key host.

@@ -10,6 +10,7 @@ FEATURES:
 
 - Add support for installing NGINX Open Source and NGINX Plus on Alpine Linux 3.21.
 - Add a parameter, `nginx_distribution_package`, to override the default NGINX package name when installing NGINX from your distribution/OS repository.
+- Add a parameter, `nginx_skip_os_install_config_check`, to turn off the NGINX config check handler when installing NGINX from the respective distribution package manager. This should help avoid potential issues where the default NGINX config that ships with a distribution is broken for some reason.
 
 BUG FIXES:
 
