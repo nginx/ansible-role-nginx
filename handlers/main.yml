@@ -23,7 +23,7 @@
   ignore_errors: true
   check_mode: false
   changed_when: false
-  when: nginx_state != 'absent'
+  when: nginx_state != 'absent' or (nginx_install_from == 'os_repository' and nginx_skip_os_install_config_check | bool)
   listen: (Handler) Run NGINX
 
 - name: (Handler) Print NGINX error if syntax check fails
