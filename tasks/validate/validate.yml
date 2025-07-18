@@ -14,6 +14,7 @@
   register: jinja2_version
   changed_when: false
   delegate_to: localhost
+  check_mode: no
   become: false
   check_mode: false
 
@@ -30,6 +31,7 @@
   register: collection_list
   changed_when: false
   delegate_to: localhost
+  check_mode: no
   become: false
   check_mode: false
 
