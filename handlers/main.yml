@@ -59,7 +59,7 @@
 
 - name: (Handler) Print logrotate error if config check fails
   ansible.builtin.debug:
-    var: logrotate_check['stderr_lines']
+    var: logrotate_check['stderr_lines'] and logrotate_check['stderr_lines'] | select('search','already exists, skipping rotation$') != logrotate_check['stderr_lines']
   failed_when: logrotate_check['rc'] != 0
   when:
     - logrotate_check['stderr_lines'] is defined
