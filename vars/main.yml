@@ -39,7 +39,7 @@ nginx_supported_distributions:
     architectures: [x86_64, aarch64]
   debian:
     name: Debian
-    versions: [11, 12]
+    versions: [11, 12, 13]
     architectures: [x86_64, aarch64]
   oraclelinux:
     name: Oracle Linux
