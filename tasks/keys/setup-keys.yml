@@ -20,7 +20,7 @@
 - name: (Debian/Ubuntu) Add NGINX signing key
   ansible.builtin.get_url:
     url: "{{ keysite }}"
-    dest: /usr/share/keyrings/nginx-archive-keyring.gpg
+    dest: /usr/share/keyrings/nginx-archive-keyring.gpg.asc
     checksum: sha256:55385da31d198fa6a5012d40ae98ecb272a6c4e8fffffba94719ffd3e87de37a
     mode: '0644'
   when: ansible_facts['os_family'] == 'Debian'
