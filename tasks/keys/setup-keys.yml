@@ -18,10 +18,10 @@
   when: ansible_facts['os_family'] != 'Alpine'
 
 - name: (Debian/Ubuntu) Add NGINX signing key
-  ansible.builtin.apt_key:
-    id: 8540A6F18833A80E9C1653A42FD21310B49F6B46
-    keyring: /usr/share/keyrings/nginx-archive-keyring.gpg
+  ansible.builtin.get_url:
     url: "{{ keysite }}"
+    dest: /usr/share/keyrings/nginx-archive-keyring.gpg
+    checksum: sha256:55385da31d198fa6a5012d40ae98ecb272a6c4e8fffffba94719ffd3e87de37a
   when: ansible_facts['os_family'] == 'Debian'
 
 - name: (Red Hat/SLES OSs) Add NGINX signing key
