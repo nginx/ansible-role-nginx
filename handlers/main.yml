@@ -37,12 +37,6 @@
     - nginx_state != 'absent'
   listen: (Handler) Run NGINX
 
-- name: (Handler) Start NGINX Amplify agent
-  ansible.builtin.service:
-    name: amplify-agent
-    state: started
-    enabled: true
-
 - name: (Handler) Start NGINX Agent
   ansible.builtin.service:
     name: nginx-agent

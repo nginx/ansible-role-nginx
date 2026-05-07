@@ -15,7 +15,7 @@ Follow the role's [installation guide](/README.md#Installation) to install Ansib
 
 ### Project Overview & Structure
 
-- The NGINX Ansible role is written in [`yaml`](https://yaml.org) and supports NGINX Open Source, NGINX Plus, NGINX Agent and NGINX Amplify.
+- The NGINX Ansible role is written in [`yaml`](https://yaml.org) and supports NGINX Open Source, NGINX Plus and NGINX Agent.
 - The project follows the standard [Ansible role directory structure](https://docs.ansible.com/ansible/latest/user_guide/playbooks_reuse_roles.html):
   - The main "codebase" is found in the [`tasks/`](/tasks/) directory.
   - Variables can be found in [`defaults/main/`](/defaults/main/). The filenames in this directory highlight which variables are contained in each file.
