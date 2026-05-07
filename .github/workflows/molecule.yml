@@ -37,52 +37,90 @@ jobs:
     name: Molecule
     runs-on: ubuntu-24.04
     needs: ansible-lint
-    env:
-      AGENT_DATA_PLANE_KEY: ${{ secrets.AGENT_DATA_PLANE_KEY }}
-      NGINX_CRT: ${{ secrets.NGINX_CRT }}
-      NGINX_KEY: ${{ secrets.NGINX_KEY }}
-      NGINX_JWT: ${{ secrets.NGINX_JWT }}
-      ONE_API_TOKEN: ${{ secrets.ONE_API_TOKEN }}
-      ONE_TENANT: ${{ secrets.ONE_TENANT }}
     strategy:
       fail-fast: false
       matrix:
         scenario:
-          - agent
           - default
           - distribution
           - downgrade
-          - downgrade-plus
-          - plus
           - source
           - source-version
           - stable
           - uninstall
-          - uninstall-plus
           - upgrade
-          - upgrade-plus
           - version
     steps:
       - name: Check out the codebase
-        if: ${{ !(contains(matrix.scenario, 'plus')) || (env.NGINX_CRT != 0 && env.NGINX_KEY != 0) }}
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
 
       - name: Set up Python 3
-        if: ${{ !(contains(matrix.scenario, 'plus')) || (env.NGINX_CRT != 0 && env.NGINX_KEY != 0) }}
         uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5.6.0
         with:
           python-version: 3.x
 
       - name: Install Ansible core and Molecule
-        if: ${{ !(contains(matrix.scenario, 'plus')) || (env.NGINX_CRT != 0 && env.NGINX_KEY != 0) }}
         run: pip3 install -r .github/workflows/requirements/requirements_molecule.txt
 
       - name: Install Ansible core collection dependencies
-        if: ${{ !(contains(matrix.scenario, 'plus')) || (env.NGINX_CRT != 0 && env.NGINX_KEY != 0) }}
         run: ansible-galaxy install -r .github/workflows/requirements/requirements_collections.yml
 
       - name: Run Molecule tests
-        if: ${{ !(contains(matrix.scenario, 'plus')) || (env.NGINX_CRT != 0 && env.NGINX_KEY != 0) }}
+        run: molecule test -s ${{ matrix.scenario }}
+        env:
+          PY_COLORS: 1
+          ANSIBLE_FORCE_COLOR: 1
+
+  molecule-plus-agent:
+    name: Molecule (Plus & Agent)
+    runs-on: ubuntu-24.04
+    needs: ansible-lint
+    if: github.repository == 'nginx/ansible-role-nginx' && (github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository)
+    strategy:
+      fail-fast: false
+      matrix:
+        scenario:
+          - agent
+          - downgrade-plus
+          - plus
+          - uninstall-plus
+          - upgrade-plus
+    steps:
+      - name: Check out the codebase
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+
+      - name: Set up Python 3
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5.6.0
+        with:
+          python-version: 3.x
+
+      - name: Install Ansible core and Molecule
+        run: pip3 install -r .github/workflows/requirements/requirements_molecule.txt
+
+      - name: Install Ansible core collection dependencies
+        run: ansible-galaxy install -r .github/workflows/requirements/requirements_collections.yml
+
+      - name: Get agent-related secrets from Azure
+        if: ${{ contains(matrix.scenario, 'agent') }}
+        uses: nginx/ci-self-hosted/.github/actions/get-from-vault@5c3e1f8b51f66a851fdba80f70e19cf966199730
+        with:
+          client-id: ${{ secrets.SYSENG_CLIENT_ID }}
+          tenant-id: ${{ secrets.SYSENG_TENANT_ID }}
+          vault-name: ${{ secrets.SYSENG_VAULT_NAME }}
+          secret-names: "github-ansible-agent-data-plan-key, github-ansible-one-token, github-ansible-one-tenant"
+          env-names: "AGENT_DATA_PLANE_KEY, ONE_API_TOKEN, ONE_TENANT"
+
+      - name: Get plus-related secrets from Azure
+        if: ${{ contains(matrix.scenario, 'plus') }}
+        uses: nginx/ci-self-hosted/.github/actions/get-from-vault@5c3e1f8b51f66a851fdba80f70e19cf966199730
+        with:
+          client-id: ${{ secrets.SYSENG_CLIENT_ID }}
+          tenant-id: ${{ secrets.SYSENG_TENANT_ID }}
+          vault-name: ${{ secrets.NGINX_COMMON_VAULT_NAME }}
+          secret-names: "nginx-pkg-certificate, nginx-pkg-key, nginx-pkg-jwt"
+          env-names: "NGINX_CRT, NGINX_KEY, NGINX_JWT"
+
+      - name: Run Molecule tests
         run: molecule test -s ${{ matrix.scenario }}
         env:
           PY_COLORS: 1
