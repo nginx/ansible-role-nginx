@@ -39,9 +39,6 @@ jobs:
     needs: ansible-lint
     env:
       AGENT_DATA_PLANE_KEY: ${{ secrets.AGENT_DATA_PLANE_KEY }}
-      AMPLIFY_API_KEY: ${{ secrets.AMPLIFY_API_KEY }}
-      AMPLIFY_EMAIL: ${{ secrets.AMPLIFY_EMAIL }}
-      AMPLIFY_PASSWORD: ${{ secrets.AMPLIFY_PASSWORD }}
       NGINX_CRT: ${{ secrets.NGINX_CRT }}
       NGINX_KEY: ${{ secrets.NGINX_KEY }}
       NGINX_JWT: ${{ secrets.NGINX_JWT }}
@@ -52,7 +49,6 @@ jobs:
       matrix:
         scenario:
           - agent
-          - amplify
           - default
           - distribution
           - downgrade
