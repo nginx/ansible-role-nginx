@@ -3,21 +3,21 @@
   hosts: localhost
   gather_facts: false
   tasks:
-    - name: Create ephemeral license certificate file from b64 decoded env var
+    - name: Create ephemeral license certificate file from env var
       ansible.builtin.copy:
-        content: "{{ lookup('env', 'NGINX_CRT') | b64decode }}"
+        content: "{{ lookup('env', 'NGINX_CRT') }}"
         dest: ../../files/license/nginx-repo.crt
         force: false
         mode: "0444"
 
-    - name: Create ephemeral license key file from b64 decoded env var
+    - name: Create ephemeral license key file from env var
       ansible.builtin.copy:
-        content: "{{ lookup('env', 'NGINX_KEY') | b64decode }}"
+        content: "{{ lookup('env', 'NGINX_KEY') }}"
         dest: ../../files/license/nginx-repo.key
         force: false
         mode: "0444"
 
-    - name: Create ephemeral license JWT file from b64 encoded env var
+    - name: Create ephemeral license JWT file from env var
       ansible.builtin.copy:
         content: "{{ lookup('env', 'NGINX_JWT') }}"
         dest: ../../files/license/license.jwt
