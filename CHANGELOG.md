@@ -5,6 +5,7 @@
 BREAKING CHANGES:
 
 - Remove support for installing NGINX Plus on Alpine Linux 3.17.
+- Remove support for s390x architecture.
 
 FEATURES:
 
