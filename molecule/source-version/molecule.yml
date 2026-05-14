@@ -109,7 +109,7 @@ platforms:
       - /sys/fs/cgroup:/sys/fs/cgroup:rw
     command: /usr/sbin/init
   - name: sles-15
-    image: registry.suse.com/suse/sle15:15.6
+    image: registry.suse.com/suse/sle15:15.7
     dockerfile: ../common/Dockerfile.j2
     privileged: true
     cgroupns_mode: host
