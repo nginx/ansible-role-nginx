@@ -7,6 +7,7 @@
   "labels": [
     "dependencies"
   ],
+  "minimumReleaseAge": "7 days",
   "prConcurrentLimit": 0,
   "prHourlyLimit": 0,
   "schedule": [
