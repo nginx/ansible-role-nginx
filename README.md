@@ -245,19 +245,16 @@ AlmaLinux:
   - 8
   - 9
 Alpine:
-  - 3.17
   - 3.18
   - 3.19
   - 3.20
+  - 3.21
 Amazon Linux:
   - 2
   - 2023
 Debian:
   - bullseye (11)
-  - bookwork (12)
-FreeBSD:
-  - 13
-  - 14
+  - bookworm (12)
 Oracle Linux:
   - 8
   - 9
@@ -268,7 +265,6 @@ Rocky Linux:
   - 8
   - 9
 SUSE/SLES:
-  - 12
   - 15
 Ubuntu:
   - focal (20.04)
