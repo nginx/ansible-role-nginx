@@ -12,13 +12,79 @@ nginx_agent_enable: false
 # Configure the NGINX Agent.
 nginx_agent_configure: false
 
-# Specify the NGINX Agent API host and port. Optionally, specify the path to the cert and key.
-# Default is not enabled.
-# nginx_agent_api:
-#   host: 127.0.0.1
-#   port: 8081
-#   cert: /path/to/cert
-#   key: /path/to/key
+# Specify the log level and path.
+# Default is info for the log level and /var/log/nginx-agent/ for the log path.
+nginx_agent_log:
+  level: info
+  path: /var/log/nginx-agent/
+
+# Configure polling frequencies for the instance, health, and file watchers.
+# nginx_agent_watchers:
+#   instance_watcher:
+#     monitoring_frequency: 10s
+#   instance_health_watcher:
+#     monitoring_frequency: 10s
+#   file_watcher:
+#     monitoring_frequency: 10s
+#     exclude_files:
+#       - \.*log$
+
+# Key/value labels to attach to this agent instance.
+# nginx_agent_labels:
+#   env: prod
+#   team: backend
+
+# NGINX Agent features to enable.
+# Available: configuration, certificates, file-watcher, metrics, api-action, logs-nap
+# Default is all features enabled when not specified.
+# nginx_agent_features:
+#   - configuration
+#   - certificates
+#   - file-watcher
+#   - metrics
+#   - logs-nap
+
+# Configure the syslog server port for NAP log ingestion.
+# nginx_agent_syslog_server:
+#   port: 1514
+
+# NGINX data plane configuration options.
+# nginx_agent_data_plane_config:
+#   api_url: "http://127.0.0.1:80/api"
+#   reload_monitoring_period: 30s
+#   treat_warnings_as_errors: false
+#   exclude_logs:
+#     - /var/log/nginx/error.log
+#     - ^/var/log/nginx/.*.log$
+#   reload_backoff:
+#     initial_interval: 100ms
+#     max_interval: 20s
+#     max_elapsed_time: 15s
+#     randomization_factor: 1.5
+#     multiplier: 1.5
+
+# HTTP and gRPC client settings.
+# nginx_agent_client:
+#   http:
+#     timeout: 15s
+#   grpc:
+#     keepalive:
+#       timeout: 15s
+#       time: 10s
+#       permit_without_stream: false
+#     max_message_size: 1048575
+#     max_message_receive_size: 1048575
+#     max_message_send_size: 1048575
+#     max_file_size: 485753
+#     response_timeout: 30s
+#     file_chunk_size: 48575
+#     max_parallel_file_operations: 10
+#   backoff:
+#     initial_interval: 200ms
+#     max_interval: 10s
+#     max_elapsed_time: 25s
+#     randomization_factor: 1.5
+#     multiplier: 2.5
 
 # Specify the control plane server host, port, and data plane key/token.
 # The data plane key is required to authenticate NGINX Agent with the NGINX One SaaS control plane available in F5 Distributed Cloud.
@@ -26,82 +92,113 @@ nginx_agent_configure: false
 # nginx_agent_server:
 #   host: agent.connect.nginx.com
 #   port: 443
-#   data_plane_key: ''
+#   data_plane_key: ""
+#   tokenpath: /path/to/token/file
 
 # Enable TLS communication between data plane and control plane.
 # Optionally, specify the path to the TLS certificate, key, and CA certificate to enable mTLS.
 # nginx_agent_tls:
-#   enable: true
 #   skip_verify: false
 #   cert: /path/to/cert
 #   key: /path/to/key
 #   ca: /path/to/ca
+#   server_name: my-control-plane.example.com
 
-# Specify the log level and path.
-# Default is info for the log level and /var/log/nginx-agent/ for the log path.
-nginx_agent_log:
-  level: info
-  path: /var/log/nginx-agent/
+# Specify an auxiliary command server (secondary management plane).
+# Supports the same fields as nginx_agent_server/nginx_agent_tls.
+# nginx_agent_auxiliary_command:
+#   host: second.management.plane
+#   port: 9999
+#   data_plane_key: ""
+#   tokenpath: /path/to/token/file
+#
+# nginx_agent_auxiliary_command_tls:
+#   skip_verify: false
+#   cert: /path/to/cert
+#   key: /path/to/key
+#   ca: /path/to/ca
+#   server_name: aux-plane.example.com
 
-# Specify NGINX specific options within NGINX Agent.
-# Default is to not exclude any logs, to use the default socket path and to not treat warnings as errors.
-nginx_agent_nginx:
-  exclude_logs: '""'
-  socket: '"unix:/var/run/nginx-agent/nginx.sock"'
-  # treat_warnings_as_errors: false
+# Directories the agent is allowed to read/write.
+# Defaults cover standard NGINX and App Protect paths.
+nginx_agent_allowed_directories:
+  - /etc/nginx
+  - /etc/app_protect
+  - /usr/local/etc/nginx
+  - /usr/share/nginx/modules
+  - /var/run/nginx
+  - /var/log/nginx
 
-# Specify how often NGINX Agent polls the dataplane.
-# Default is 30s for poll interval and 24h for report interval.
-nginx_agent_dataplane_status:
-  poll_interval: 30s
-  report_interval: 24h
+# OpenTelemetry collector configuration.
+# The entire collector block is passed as-is to the resulting config file.
+# nginx_agent_collector:
+#   config_path: /etc/nginx-agent/opentelemetry-collector-agent.yaml
+#   additional_config_paths:
+#     - /etc/nginx-agent/my-extra-collector.yaml
+#   log:
+#     level: INFO
+#     path: /var/log/nginx-agent/opentelemetry-collector-agent.log
+#   receivers:
+#     otlp:
+#       default:
+#         server:
+#           host: "127.0.0.1"
+#           port: 4317
+#         auth:
+#           token: secret-receiver-token
+#         tls:
+#           skip_verify: false
+#           ca: /tmp/ca.pem
+#           cert: /tmp/cert.pem
+#           key: /tmp/key.pem
+#     host_metrics:
+#       collection_interval: 10s
+#       initial_delay: 2s
+#       scrapers:
+#         cpu: {}
+#   processors:
+#     batch:
+#       default:
+#         send_batch_max_size: 0
+#         send_batch_size: 8192
+#         timeout: 200ms
+#   exporters:
+#     otlp:
+#       default:
+#         server:
+#           host: "127.0.0.1"
+#           port: 4317
+#         tls:
+#           skip_verify: false
+#           cert: /path/to/cert.pem
+#           key: /path/to/key.pem
+#           ca: /path/to/ca.pem
+#     prometheus:
+#       server:
+#         host: "127.0.0.1"
+#         port: 1235
+#     debug: {}
+#   extensions:
+#     health:
+#       server:
+#         host: "127.0.0.1"
+#         port: 13133
+#       path: /
+#       tls:
+#         skip_verify: false
+#         cert: /path/to/cert.pem
+#         key: /path/to/key.pem
+#         ca: /path/to/ca.pem
+#     headers_setter:
+#       headers:
+#         - action: insert
+#           key: X-Custom-Header
+#           value: my-value
 
-# Specify how often NGINX Agent reports metrics to the control plane.
-# Default is 20 for the buffer/bulk size, 1m for report interval, 15s for collection interval and aggregated for mode.
-nginx_agent_metrics:
-  bulk_size: 20
-  report_interval: 1m
-  collection_interval: 15s
-  mode: aggregated
-
-# NGINX Open Source default config paths.
-# Default can be seen below.
-# nginx_agent_config_dirs: '"/etc/nginx:/usr/local/etc/nginx:/usr/share/nginx/modules"'
-
-# Internal NGINX Agent queue size.
-# Default is 100.
-# nginx_agent_queue_size: 100
-
-# NGINX Agent features.
-# Default is an empty list. See https://docs.nginx.com/nginx-agent/configuration/configuration-overview/ for more details.
-# nginx_agent_features: []
-
-# NGINX Agent extensions.
-# Default is an empty list. To enable NGINX App Protect reporting within NGINX Agent, use the 'nginx-app-protect' extension as below.
-# nginx_agent_extensions: ['nginx-app-protect']
-
-# NGINX Agent NGINX App Protect settings.
-# Default is not enabled.
-# nginx_agent_app_protect:
-#   report_interval: 15s
-#   precompiled_publication: true
-
-
-#############################################################################################
-# The following parameters let you configure the dynamic configuration file of NGINX Agent. #
-# By default, nothing is configured.                                                        #
-#############################################################################################
-
-# Configure the NGINX Agent dynamic configuration file.
-# NOTE: This will only run if the NGINX Agent dynamic configuration file has not yet been modified externally.
-# If you want to force push a dynamic configuration file, use the 'nginx_agent_configure_dynamic_force' parameter below.
-# Default is false.
-nginx_agent_configure_dynamic: false
-# Force pushing a new dynamic configuration file to NGINX Agent.
-# NOTE: This will overwrite any changes made to the dynamic configuration file by a control plane, and might lead to unexpected behavior.
-# Default is false.
-nginx_agent_configure_dynamic_force: false
-
-# Specify the NGINX Agent instance group and tags.
-# nginx_agent_instance_group: my_instance_group
-# nginx_agent_tags: [ansible, dev, qa]
+# External data source settings (proxy and domain allow-list for agent downloads).
+# nginx_agent_external_data_source:
+#   proxy_url: "http://proxy.example.com"
+#   allowed_domains:
+#     - example.com
+#     - api.example.com
+#   max_bytes: 1048576
