@@ -257,6 +257,7 @@ Amazon Linux:
 Debian:
   - bullseye (11)
   - bookworm (12)
+  - trixie (13)
 Oracle Linux:
   - 8
   - 9
