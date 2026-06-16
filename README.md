@@ -172,10 +172,9 @@ AlmaLinux:
   - 8
   - 9
 Alpine:
-  - 3.18
-  - 3.19
-  - 3.20
   - 3.21
+  - 3.22
+  - 3.23
 Amazon Linux:
   - 2023
 Debian:
@@ -207,10 +206,9 @@ AlmaLinux:
   - 8
   - 9
 Alpine:
-  - 3.18
-  - 3.19
-  - 3.20
   - 3.21
+  - 3.22
+  - 3.23
 Amazon Linux:
   - 2023
 Debian:
@@ -244,10 +242,9 @@ AlmaLinux:
   - 8
   - 9
 Alpine:
-  - 3.18
-  - 3.19
-  - 3.20
   - 3.21
+  - 3.22
+  - 3.23
 Amazon Linux:
   - 2023
 Debian:
