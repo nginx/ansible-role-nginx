@@ -7,6 +7,7 @@ BREAKING CHANGES:
 - Remove support for installing NGINX Plus on Alpine Linux 3.17.
 - Remove support for s390x architecture.
 - Remove support for NGINX Agent v2; add support for NGINX Agent v3.
+- Remove support for Amazon Linux 2.
 
 FEATURES:
 

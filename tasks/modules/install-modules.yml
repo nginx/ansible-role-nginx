@@ -14,16 +14,8 @@
             key: https://dl.fedoraproject.org/pub/epel/RPM-GPG-KEY-EPEL-{{ ansible_facts['distribution_major_version'] }}
 
         - name: (AlmaLinux/Oracle Linux/RHEL/Rocky Linux) Install EPEL
-          ansible.builtin.yum:
+          ansible.builtin.dnf:
             name: https://dl.fedoraproject.org/pub/epel/epel-release-latest-{{ ansible_facts['distribution_major_version'] }}.noarch.rpm
-
-    - name: (Amazon Linux) Install EPEL
-      ansible.builtin.command:
-        cmd: amazon-linux-extras install -y epel
-        creates: /etc/yum.repos.d/epel.repo
-      when:
-        - ansible_facts['distribution'] == "Amazon"
-        - ansible_facts['distribution_major_version'] is version('2', '==')
 
 - name: Install NGINX modules
   ansible.builtin.package:
@@ -41,8 +33,7 @@
       or (ansible_facts['os_family'] == 'RedHat' and ansible_facts['distribution'] != 'Amazon' and ansible_facts['distribution_major_version'] is version('8', '>='))
       or (ansible_facts['distribution'] == 'Amazon' and ansible_facts['distribution_major_version'] is version('2023', '==')))
     - not (item['name'] | default(item) == 'geoip2')
-      or not ((ansible_facts['os_family'] == 'Suse')
-      or (ansible_facts['distribution'] == 'Amazon' and ansible_facts['distribution_major_version'] is version('2', '==')))
+      or not (ansible_facts['os_family'] == 'Suse')
     - not (item['name'] | default(item) == 'lua')
       or not (ansible_facts['os_family'] == 'Suse' and ansible_facts['distribution_major_version'] is version('12', '=='))
     - not (item['name'] | default(item) == 'opentracing')

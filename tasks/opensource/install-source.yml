@@ -21,7 +21,7 @@
       when: ansible_facts['os_family'] == 'RedHat'
       block:
         - name: (RHEL 8) Install Python 3
-          ansible.builtin.yum:
+          ansible.builtin.dnf:
             name:
               - python3
               - python3-pip
@@ -37,7 +37,7 @@
           when: ansible_facts['distribution_major_version'] is version('8', '==')
 
         - name: (AlmaLinux/Amazon Linux/Oracle Linux/RHEL/Rocky Linux) Install build tools
-          ansible.builtin.yum:
+          ansible.builtin.dnf:
             name:
               - ca-certificates
               - gcc
@@ -106,7 +106,7 @@
       when: ansible_facts['os_family'] == 'Alpine'
 
     - name: (AlmaLinux/Amazon Linux/Oracle Linux/RHEL/Rocky Linux) Install PCRE dependency from package
-      ansible.builtin.yum:
+      ansible.builtin.dnf:
         name: "{{ (pcre_release == 2) | ternary('pcre2-devel', 'pcre-devel') }}"
         update_cache: true
       when: ansible_facts['os_family'] == 'RedHat'
@@ -175,7 +175,7 @@
       when: ansible_facts['os_family'] == 'Alpine'
 
     - name: (AlmaLinux/Amazon Linux/Oracle Linux/RHEL/Rocky Linux) Install ZLib dependency from package
-      ansible.builtin.yum:
+      ansible.builtin.dnf:
         name: zlib-devel
         update_cache: true
       when: ansible_facts['os_family'] == 'RedHat'
@@ -244,7 +244,7 @@
       when: ansible_facts['os_family'] == 'Alpine'
 
     - name: (AlmaLinux/Amazon Linux/Oracle Linux/RHEL/Rocky Linux) Install OpenSSL dependency from package
-      ansible.builtin.yum:
+      ansible.builtin.dnf:
         name: openssl-devel
         update_cache: true
       when: ansible_facts['os_family'] == 'RedHat'

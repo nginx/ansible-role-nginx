@@ -1,6 +1,6 @@
 ---
 - name: (RHEL) Install dependencies
-  ansible.builtin.yum:
+  ansible.builtin.dnf:
     name:
       - libselinux-utils
       - policycoreutils

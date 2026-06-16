@@ -13,12 +13,12 @@
   when: nginx_manage_repo | bool
 
 - name: (AlmaLinux/Amazon Linux/Oracle Linux/RHEL/Rocky Linux) Force Yum cache refresh
-  ansible.builtin.command: yum clean metadata
+  ansible.builtin.command: dnf clean metadata
   when: nginx_manage_repo | bool
   changed_when: false
 
 - name: (AlmaLinux/Amazon Linux/Oracle Linux/RHEL/Rocky Linux) {{ nginx_setup | capitalize }} NGINX
-  ansible.builtin.yum:
+  ansible.builtin.dnf:
     name: nginx{{ nginx_version | default('') }}
     state: "{{ nginx_state }}"
     update_cache: true
