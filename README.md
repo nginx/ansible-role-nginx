@@ -47,7 +47,6 @@ This will also ensure you are deploying/running this role with a fully tested ve
 
 - This role is developed and tested with [maintained](https://docs.ansible.com/ansible/devel/reference_appendices/release_and_maintenance.html) versions of Ansible core and Python.
 
-  ***Note:** Ansible `2.18` does no longer support the `yum` module and as such, is not supported by this role until Amazon Linux 2 reaches EoL.*
 - Instructions on how to install Ansible core can be found in the [Ansible](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html#upgrading-ansible-from-version-2-9-and-older-to-version-2-10-or-later) docs.
 - When using Ansible core, you will also need to install the following Ansible collections:
 
@@ -178,7 +177,6 @@ Alpine:
   - 3.20
   - 3.21
 Amazon Linux:
-  - 2
   - 2023
 Debian:
   - bullseye (11)
@@ -214,7 +212,6 @@ Alpine:
   - 3.20
   - 3.21
 Amazon Linux:
-  - 2
   - 2023
 Debian:
   - bullseye (11)
@@ -252,7 +249,6 @@ Alpine:
   - 3.20
   - 3.21
 Amazon Linux:
-  - 2
   - 2023
 Debian:
   - bullseye (11)
