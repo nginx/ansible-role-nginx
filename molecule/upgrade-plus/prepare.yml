@@ -29,7 +29,7 @@
   pre_tasks:
     - name: Set repo if Alpine
       ansible.builtin.set_fact:
-        version: =32-r1
+        version: =37.0.1-r1
       when: ansible_facts['os_family'] == "Alpine"
     - name: Set repo if Debian
       ansible.builtin.set_fact:

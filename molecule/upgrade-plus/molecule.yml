@@ -1,7 +1,7 @@
 ---
 driver:
   name: docker
-platforms: # Alpine Linux 3.21 only has one version of NGINX Plus available (at the moment) so it's impossible to test the downgrade scenario
+platforms:
   - name: almalinux-8
     image: almalinux:8
     dockerfile: ../common/Dockerfile.j2
@@ -18,14 +18,30 @@ platforms: # Alpine Linux 3.21 only has one version of NGINX Plus available (at 
     volumes:
       - /sys/fs/cgroup:/sys/fs/cgroup:rw
     command: /usr/sbin/init
-  # - name: alpine-3.21
-  #   image: alpine:3.21
-  #   dockerfile: ../common/Dockerfile.j2
-  #   privileged: true
-  #   cgroupns_mode: host
-  #   volumes:
-  #     - /sys/fs/cgroup:/sys/fs/cgroup:rw
-  #   command: /sbin/init
+  - name: alpine-3.21
+    image: alpine:3.21
+    dockerfile: ../common/Dockerfile.j2
+    privileged: true
+    cgroupns_mode: host
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:rw
+    command: /sbin/init
+  - name: alpine-3.22
+    image: alpine:3.22
+    dockerfile: ../common/Dockerfile.j2
+    privileged: true
+    cgroupns_mode: host
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:rw
+    command: /sbin/init
+  - name: alpine-3.23
+    image: alpine:3.23
+    dockerfile: ../common/Dockerfile.j2
+    privileged: true
+    cgroupns_mode: host
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:rw
+    command: /sbin/init
   - name: amazonlinux-2023
     image: amazonlinux:2023
     dockerfile: ../common/Dockerfile.j2
