@@ -8,11 +8,13 @@ BREAKING CHANGES:
 - Remove support for s390x architecture.
 - Remove support for NGINX Agent v2; add support for NGINX Agent v3.
 - Remove support for Amazon Linux 2.
+- Remove support for Ubuntu 20.04, 24.10.
 
 FEATURES:
 
 - Add support for installing NGINX Open Source and NGINX Plus on Alpine Linux 3.21, 3.22, 3.23.
 - Add support for installing NGINX Open Source and NGINX Plus on Debian 13 "trixie".
+- Add support for installing NGINX Open Source and NGINX Plus on Ubuntu 26.04.
 - Add a parameter, `nginx_distribution_package`, to override the default NGINX package name when installing NGINX from your distribution/OS repository.
 - Add a parameter, `nginx_skip_os_install_config_check`, to turn off the NGINX config check handler when installing NGINX from the respective distribution package manager. This should help avoid potential issues where the default NGINX config that ships with a distribution is broken for some reason.
 
