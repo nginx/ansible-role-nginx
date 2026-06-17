@@ -91,6 +91,15 @@ platforms:
     volumes:
       - /sys/fs/cgroup:/sys/fs/cgroup:rw
     command: /usr/sbin/init
+  - name: oraclelinux-10
+    image: oraclelinux:10
+    platform: x86_64
+    dockerfile: ../common/Dockerfile.j2
+    privileged: true
+    cgroupns_mode: host
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:rw
+    command: /usr/sbin/init
   - name: rhel-8
     image: redhat/ubi8:8.10
     dockerfile: ../common/Dockerfile.j2
@@ -107,8 +116,16 @@ platforms:
     volumes:
       - /sys/fs/cgroup:/sys/fs/cgroup:rw
     command: /usr/sbin/init
+  - name: rhel-10
+    image: redhat/ubi10:10.2
+    dockerfile: ../common/Dockerfile.j2
+    privileged: true
+    cgroupns_mode: host
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:rw
+    command: /usr/sbin/init
   - name: rockylinux-8
-    image: rockylinux:8
+    image: rockylinux/rockylinux:8
     dockerfile: ../common/Dockerfile.j2
     privileged: true
     cgroupns_mode: host
@@ -116,7 +133,15 @@ platforms:
       - /sys/fs/cgroup:/sys/fs/cgroup:rw
     command: /usr/sbin/init
   - name: rockylinux-9
-    image: rockylinux:9.0
+    image: rockylinux/rockylinux:9.0
+    dockerfile: ../common/Dockerfile.j2
+    privileged: true
+    cgroupns_mode: host
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:rw
+    command: /usr/sbin/init
+  - name: rockylinux-10
+    image: rockylinux/rockylinux:10
     dockerfile: ../common/Dockerfile.j2
     privileged: true
     cgroupns_mode: host

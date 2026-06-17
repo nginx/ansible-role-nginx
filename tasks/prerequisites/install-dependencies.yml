@@ -13,12 +13,19 @@
     state: latest # noqa package-latest
   when: ansible_facts['os_family'] == 'Debian'
 
-- name: (Amazon Linux/Oracle Linux/RHEL) Install dependencies
+- name: Amazon Linux Install dependencies
+  ansible.builtin.dnf:
+    name: "{{ nginx_amazon_dependencies }}"
+    update_cache: true
+    state: latest # noqa package-latest
+  when: ansible_facts['distribution'] == 'Amazon'
+
+- name: (Oracle Linux/RHEL) Install dependencies
   ansible.builtin.dnf:
     name: "{{ nginx_redhat_dependencies }}"
     update_cache: true
     state: latest # noqa package-latest
-  when: ansible_facts['os_family'] == 'RedHat'
+  when: ansible_facts['os_family'] == 'RedHat' and ansible_facts['distribution'] != 'Amazon'
 
 - name: (SLES) Install dependencies
   community.general.zypper:

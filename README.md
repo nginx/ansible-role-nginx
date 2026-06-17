@@ -171,6 +171,7 @@ Older releases might work, but keep in mind that NGINX Open Source only actively
 AlmaLinux:
   - 8
   - 9
+  - 10
 Alpine:
   - 3.21
   - 3.22
@@ -184,12 +185,15 @@ Debian:
 Oracle Linux:
   - 8
   - 9
+  - 10
 Red Hat:
   - 8
   - 9
+  - 10
 Rocky Linux:
   - 8
   - 9
+  - 10
 SUSE/SLES:
   - 15 SP6+
 Ubuntu:
@@ -204,6 +208,7 @@ Ubuntu:
 AlmaLinux:
   - 8
   - 9
+  - 10
 Alpine:
   - 3.21
   - 3.22
@@ -220,12 +225,15 @@ FreeBSD:
 Oracle Linux:
   - 8.1+
   - 9
+  - 10
 Red Hat:
   - 8.1+
   - 9
+  - 10
 Rocky Linux:
   - 8
   - 9
+  - 10
 SUSE/SLES:
   - 15 SP2+
 Ubuntu:
@@ -240,6 +248,7 @@ Ubuntu:
 AlmaLinux:
   - 8
   - 9
+  - 10
 Alpine:
   - 3.21
   - 3.22
@@ -253,12 +262,15 @@ Debian:
 Oracle Linux:
   - 8
   - 9
+  - 10
 Red Hat:
   - 8
   - 9
+  - 10
 Rocky Linux:
   - 8
   - 9
+  - 10
 SUSE/SLES:
   - 15
 Ubuntu:
