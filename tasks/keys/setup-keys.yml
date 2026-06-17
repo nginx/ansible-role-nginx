@@ -25,8 +25,35 @@
     mode: '0644'
   when: ansible_facts['os_family'] == 'Debian'
 
-- name: (Red Hat/SLES OSs) Add NGINX signing key
-  ansible.builtin.rpm_key:
-    fingerprint: 8540A6F18833A80E9C1653A42FD21310B49F6B46
-    key: "{{ keysite }}"
+- name: (Red Hat/SLES OSs) Check if NGINX signing key is already imported # noqa command-instead-of-module
+  ansible.builtin.command: rpm -q gpg-pubkey --qf '%{summary}\n'
+  register: _nginx_key_imported
+  changed_when: false
+  failed_when: false
   when: ansible_facts['os_family'] in ['RedHat', 'Suse']
+
+- name: (Red Hat/SLES OSs) Download NGINX signing key
+  ansible.builtin.get_url:
+    url: "{{ keysite }}"
+    dest: /tmp/
+    checksum: sha256:55385da31d198fa6a5012d40ae98ecb272a6c4e8fffffba94719ffd3e87de37a
+    mode: '0644'
+  register: nginx_key
+  when:
+    - ansible_facts['os_family'] in ['RedHat', 'Suse']
+    - "'nginx.com' not in (_nginx_key_imported.stdout | lower)"
+
+- name: (Red Hat/SLES OSs) Add NGINX signing key # noqa command-instead-of-module
+  ansible.builtin.command: rpm --import /tmp/nginx_signing.key
+  when:
+    - ansible_facts['os_family'] in ['RedHat', 'Suse']
+    - "'nginx.com' not in (_nginx_key_imported.stdout | lower)"
+  changed_when: true
+
+- name: Cleanup downloads
+  ansible.builtin.file:
+    path: "{{ nginx_key['dest'] | default('') }}"
+    state: absent
+  when:
+    - ansible_facts['os_family'] in ['RedHat', 'Suse']
+    - "'nginx.com' not in (_nginx_key_imported.stdout | lower)"

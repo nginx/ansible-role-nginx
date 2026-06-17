@@ -27,7 +27,7 @@ nginx_distributions: "{{ (nginx_type == 'opensource') | ternary(nginx_supported_
 nginx_supported_distributions:
   almalinux:
     name: AlmaLinux
-    versions: [8, 9]
+    versions: [8, 9, 10]
     architectures: [x86_64, aarch64]
   alpine:
     name: Alpine Linux
@@ -43,15 +43,15 @@ nginx_supported_distributions:
     architectures: [x86_64, aarch64]
   oraclelinux:
     name: Oracle Linux
-    versions: [8, 9]
+    versions: [8, 9, 10]
     architectures: [x86_64, aarch64]
   redhat:
     name: Red Hat Enterprise Linux
-    versions: [8, 9]
+    versions: [8, 9, 10]
     architectures: [x86_64, aarch64]
   rocky:
     name: Rocky Linux
-    versions: [8, 9]
+    versions: [8, 9, 10]
     architectures: [x86_64, aarch64]
   sles:
     name: SUSE Linux Enterprise Server
@@ -67,7 +67,7 @@ nginx_supported_distributions:
 nginx_plus_supported_distributions:
   almalinux:
     name: AlmaLinux
-    versions: [8, 9]
+    versions: [8, 9, 10]
     architectures: [x86_64, aarch64]
   alpine:
     name: Alpine Linux
@@ -87,15 +87,15 @@ nginx_plus_supported_distributions:
     architectures: [x86_64]
   oraclelinux:
     name: Oracle Linux
-    versions: [8, 9]
+    versions: [8, 9, 10]
     architectures: [x86_64, aarch64]
   redhat:
     name: Red Hat Enterprise Linux
-    versions: [8, 9]
+    versions: [8, 9, 10]
     architectures: [x86_64, aarch64]
   rocky:
     name: Rocky Linux
-    versions: [8, 9]
+    versions: [8, 9, 10]
     architectures: [x86_64, aarch64]
   sles:
     name: SUSE Linux Enterprise Server
@@ -130,6 +130,9 @@ nginx_plus_default_repository_suse: https://pkgs.nginx.com/plus/sles/{{ ansible_
 # Alpine dependencies
 nginx_alpine_dependencies: [ca-certificates, coreutils, openssl, pcre2]
 
+# Amazon Linux dependencies
+nginx_amazon_dependencies: [ca-certificates]
+
 # Debian dependencies
 nginx_debian_dependencies: [apt-transport-https, ca-certificates, gnupg, gpg-agent]
 
@@ -137,7 +140,7 @@ nginx_debian_dependencies: [apt-transport-https, ca-certificates, gnupg, gpg-age
 nginx_freebsd_dependencies: [security/ca_root_nss]
 
 # Red Hat dependencies
-nginx_redhat_dependencies: [ca-certificates]
+nginx_redhat_dependencies: [ca-certificates, gnupg2]
 
 # SLES dependencies
 nginx_sles_dependencies: [ca-certificates, python3-rpm]
