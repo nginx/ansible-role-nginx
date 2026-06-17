@@ -193,10 +193,9 @@ Rocky Linux:
 SUSE/SLES:
   - 15 SP6+
 Ubuntu:
-  - focal (20.04)
   - jammy (22.04)
   - noble (24.04)
-  - oracular (24.10)
+  - resolute (26.04)
 ```
 
 ### NGINX Plus
@@ -230,9 +229,9 @@ Rocky Linux:
 SUSE/SLES:
   - 15 SP2+
 Ubuntu:
-  - focal (20.04)
   - jammy (22.04)
   - noble (24.04)
+  - resolute (26.04)
 ```
 
 ### NGINX Agent
@@ -263,7 +262,6 @@ Rocky Linux:
 SUSE/SLES:
   - 15
 Ubuntu:
-  - focal (20.04)
   - jammy (22.04)
   - noble (24.04)
 ```

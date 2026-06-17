@@ -59,7 +59,7 @@ nginx_supported_distributions:
     architectures: [x86_64]
   ubuntu:
     name: Ubuntu
-    versions: [20.04, 22.04, 24.04, 24.10]
+    versions: [22.04, 24.04, 26.04]
     architectures: [x86_64, aarch64]
 
 # Supported NGINX Plus distributions
@@ -103,7 +103,7 @@ nginx_plus_supported_distributions:
     architectures: [x86_64]
   ubuntu:
     name: Ubuntu
-    versions: [20.04, 22.04, 24.04]
+    versions: [22.04, 24.04, 26.04]
     architectures: [x86_64, aarch64]
 
 # Default NGINX signing key
