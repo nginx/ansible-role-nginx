@@ -59,7 +59,7 @@ This will also ensure you are deploying/running this role with a fully tested ve
     - name: community.general
       version: 10.7.9
     - name: community.crypto # Only required if you plan to install NGINX Plus
-      version: 2.26.8
+      version: 2.26.9
     - name: community.docker # Only required if you plan to use Molecule (see below)
       version: 4.8.7
   ```
