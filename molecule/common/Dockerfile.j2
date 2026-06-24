@@ -25,7 +25,12 @@ RUN \
     && dnf clean all; \
   elif [ $(command -v zypper) ]; then \
     zypper refresh \
-    && zypper install -y bash iproute2 python3 sudo systemd systemd-sysvinit vim \
+    && . /etc/os-release \
+    && if [ ${VERSION_ID%%.*} -eq 15 ]; then \
+        zypper install -y bash iproute2 python311 python311-cryptography sudo systemd systemd-sysvinit vim; \
+       else \
+        zypper install -y bash iproute2 python3 sudo systemd vim; \
+       fi \
     && zypper clean -a; \
   elif [ $(command -v apk) ]; then \
     apk update \

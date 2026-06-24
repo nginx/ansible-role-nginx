@@ -22,8 +22,8 @@
       when: ansible_facts['os_family'] == "RedHat"
     - name: Set repo if SLES
       ansible.builtin.set_fact:
-        ngx_version: =1.27.4-1.sles{{ ansible_facts['distribution_major_version'] }}.ngx
-        njs_version: =1.27.4+0.8.10-1.sles{{ ansible_facts['distribution_major_version'] }}.ngx
+        ngx_version: =1.31.1-1.sles{{ ansible_facts['distribution_major_version'] }}.ngx
+        njs_version: =1.31.1+0.9.9-1.sles{{ ansible_facts['distribution_major_version'] }}.ngx
         cacheable: true
       when: ansible_facts['os_family'] == "Suse"
   tasks:

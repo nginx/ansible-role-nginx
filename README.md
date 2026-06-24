@@ -196,6 +196,7 @@ Rocky Linux:
   - 10
 SUSE/SLES:
   - 15 SP6+
+  - 16
 Ubuntu:
   - jammy (22.04)
   - noble (24.04)
@@ -235,7 +236,8 @@ Rocky Linux:
   - 9
   - 10
 SUSE/SLES:
-  - 15 SP2+
+  - 15 SP6+
+  - 16
 Ubuntu:
   - jammy (22.04)
   - noble (24.04)
@@ -273,6 +275,7 @@ Rocky Linux:
   - 10
 SUSE/SLES:
   - 15
+  - 16
 Ubuntu:
   - jammy (22.04)
   - noble (24.04)
