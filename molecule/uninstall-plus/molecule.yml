@@ -164,6 +164,14 @@ platforms:
     volumes:
       - /sys/fs/cgroup:/sys/fs/cgroup:rw
     command: /usr/sbin/init
+  - name: sles-16
+    image: registry.suse.com/bci/bci-base:16.0
+    dockerfile: ../common/Dockerfile.j2
+    privileged: true
+    cgroupns_mode: host
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:rw
+    command: /usr/sbin/init
   - name: ubuntu-jammy
     image: ubuntu:jammy
     dockerfile: ../common/Dockerfile.j2
@@ -196,3 +204,7 @@ provisioner:
     verify: verify.yml
   env:
     ANSIBLE_ROLES_PATH: ~/.cache/molecule/ansible-role-nginx/${MOLECULE_SCENARIO_NAME}/roles:${MOLECULE_PROJECT_DIRECTORY}/..:~/.ansible/roles:/usr/share/ansible/roles:/etc/ansible/roles
+  inventory:
+    host_vars:
+      sles-15:
+        ansible_python_interpreter: /usr/bin/python3.11

@@ -55,7 +55,7 @@ nginx_supported_distributions:
     architectures: [x86_64, aarch64]
   sles:
     name: SUSE Linux Enterprise Server
-    versions: [12, 15]
+    versions: [15, 16]
     architectures: [x86_64]
   ubuntu:
     name: Ubuntu
@@ -99,7 +99,7 @@ nginx_plus_supported_distributions:
     architectures: [x86_64, aarch64]
   sles:
     name: SUSE Linux Enterprise Server
-    versions: [15]
+    versions: [15, 16]
     architectures: [x86_64]
   ubuntu:
     name: Ubuntu

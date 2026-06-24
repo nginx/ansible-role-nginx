@@ -16,7 +16,7 @@
       when: ansible_facts['os_family'] == "RedHat"
     - name: Set repo if SLES
       ansible.builtin.set_fact:
-        version: =1.27.4-1.sles{{ ansible_facts['distribution_major_version'] }}.ngx
+        version: =1.31.1-1.sles{{ ansible_facts['distribution_major_version'] }}.ngx
       when: ansible_facts['os_family'] == "Suse"
   tasks:
     - name: Install NGINX
