@@ -84,7 +84,6 @@ platforms:
     command: /usr/sbin/init
   - name: oraclelinux-9
     image: oraclelinux:9
-    platform: x86_64
     dockerfile: ../common/Dockerfile.j2
     privileged: true
     cgroupns_mode: host
@@ -93,7 +92,6 @@ platforms:
     command: /usr/sbin/init
   - name: oraclelinux-10
     image: oraclelinux:10
-    platform: x86_64
     dockerfile: ../common/Dockerfile.j2
     privileged: true
     cgroupns_mode: host
