@@ -7,4 +7,4 @@ collections:
   - name: community.crypto
     version: 2.26.9
   - name: community.docker
-    version: 4.8.0
+    version: 5.2.1
