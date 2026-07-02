@@ -16,3 +16,8 @@ Restart={{ nginx_service_restart }}
 {% if nginx_service_restartsec is defined %}
 RestartSec={{ nginx_service_restartsec }}
 {% endif %}
+
+[Unit]
+{% if nginx_service_after %}
+After={{ nginx_service_after | join(" ") }}
+{% endif %}
