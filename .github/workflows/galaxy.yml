@@ -34,4 +34,4 @@ jobs:
           env-names: "GALAXY_API_KEY"
 
       - name: Import role releases to Ansible Galaxy
-        run: ansible-galaxy role import --api-key ${{ env.GALAXY_API_KEY }} $(echo ${{ github.repository }} | cut -d/ -f1) $(echo ${{ github.repository }} | cut -d/ -f2)
+        run: ansible-galaxy role import --api-key ${{ env.GALAXY_API_KEY }} nginxinc $(echo ${{ github.repository }} | cut -d/ -f2)
