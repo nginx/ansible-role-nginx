@@ -35,6 +35,12 @@ nginx_service_overridefilename: override.conf
 # Default is to comment this out
 # nginx_service_restartsec: 5s
 
+# Start the service after these units
+# [Unit]
+# After=
+# Default is to comment this out
+# nginx_service_after: []
+
 # Enable a custom systemd override file
 # ** This could break the service **
 # Setting this to true disables custom values above
