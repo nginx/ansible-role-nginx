@@ -14,7 +14,7 @@ permissions: read-all
 jobs:
   ansible-lint:
     name: Ansible Lint
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     steps:
       - name: Check out the codebase
         uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
@@ -35,7 +35,7 @@ jobs:
 
   molecule:
     name: Molecule
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     needs: ansible-lint
     strategy:
       fail-fast: false
@@ -73,7 +73,7 @@ jobs:
 
   molecule-plus-agent:
     name: Molecule (Plus & Agent)
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     needs: ansible-lint
     permissions:
       contents: read
