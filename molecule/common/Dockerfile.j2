@@ -40,4 +40,7 @@ RUN \
     xbps-install -Syu \
     && xbps-install -y bash iproute2 python3 sudo vim \
     && xbps-remove -O; \
+  elif [ $(command -v pacman) ]; then \
+    pacman -Syu --noconfirm \
+    && pacman -S --noconfirm python3 sudo vim; \
   fi

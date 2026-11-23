@@ -37,3 +37,4 @@
       changed_when: false
       register: version
       failed_when: version is not search(nginx_version['content'] | regex_search('([0-9]+\\.){2}[0-9]+'))
+      when: not ansible_facts['distribution'] | lower in ['archlinux']

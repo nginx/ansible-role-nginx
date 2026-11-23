@@ -1,0 +1,8 @@
+---
+- name: (Arch Linux) {{ nginx_setup | capitalize }} NGINX package
+  community.general.pacman:
+    name: nginx
+    state: "{{ nginx_state }}"
+    update_cache: true
+  ignore_errors: "{{ ansible_check_mode }}"
+  notify: (Handler) Run NGINX

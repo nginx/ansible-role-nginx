@@ -14,6 +14,7 @@ BREAKING CHANGES:
 FEATURES:
 
 - Add support for installing NGINX Open Source and NGINX Plus on Alpine Linux 3.21, 3.22, 3.23.
+- Add support for installing NGINX Open Source on Arch Linux
 - Add support for installing NGINX Open Source and NGINX Plus on Debian 13 "trixie".
 - Add support for installing NGINX Open Source and NGINX Plus on Ubuntu 26.04.
 - Add support for installing NGINX Open Source and NGINX Plus on RHEL 10 and its derivatives.

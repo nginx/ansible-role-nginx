@@ -178,6 +178,8 @@ Alpine:
   - 3.23
 Amazon Linux:
   - 2023
+Arch Linux:
+  - *
 Debian:
   - bullseye (11)
   - bookworm (12)

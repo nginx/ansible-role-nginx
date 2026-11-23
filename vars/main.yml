@@ -37,6 +37,10 @@ nginx_supported_distributions:
     name: Amazon Linux
     versions: [2023]
     architectures: [x86_64, aarch64]
+  archlinux:
+    name: Arch Linux
+    versions: [2026, 2027]
+    architectures: [x86_64]
   debian:
     name: Debian
     versions: [11, 12, 13]

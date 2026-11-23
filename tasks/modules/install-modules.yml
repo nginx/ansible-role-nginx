@@ -33,3 +33,4 @@
       or (ansible_facts['os_family'] == 'Suse' and ansible_facts['distribution_major_version'] is version('16', '==')))
     - not (item['name'] | default(item) == 'geoip2')
       or not (ansible_facts['os_family'] == 'Suse')
+    - not ansible_facts['os_family'] == 'Archlinux'
